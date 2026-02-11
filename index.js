@@ -14,18 +14,18 @@ app.use(express.json());
 
 const port = process.env.PORT || 4000;
 
-mongoose.connect(process.env.MONGO_URL)
-    .then(() => {
-        console.log("DB is connected");
-    })
-    .catch((err) => {
-        console.log("err", err.message);
-    });
+// mongoose.connect(process.env.MONGO_URL)
+//     .then(() => {
+//         console.log("DB is connected");
+//     })
+//     .catch((err) => {
+//         console.log("err", err.message);
+//     });
 
 app.use("/api",userRouter);
 app.use("/api",ChannelRouter);
 app.use("/api/video",videoRouter);
 
-app.listen(port, () => {
-    console.log("Server is running on port " + port);
+app.listen(4000, () => {
+    console.log("Server is running on port 4000");
 });
