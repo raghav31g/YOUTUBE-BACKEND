@@ -1,0 +1,32 @@
+# workflow --> pipeline
+name: Deployement Pipeline
+
+# event --> trigger
+on:
+  push:
+    branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+
+# how syntax will look like for job 
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+        # switch branch
+    - uses: actions/checkout@v4
+
+    - name: Build Docker Image
+      run: Docker build -t raghav3105/youtube-backend:latest .
+
+    - name: Docker Login
+      run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+    
+    - name: Login successful
+      run: echo "Login to Docker Hub successful"
+
+    - name: Push Docker Image
+      run: docker push raghav3105/youtube-backend:latest
