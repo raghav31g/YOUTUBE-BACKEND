@@ -1,4 +1,6 @@
 const User = require('../models/User.model');
+const channel = require('../models/Channel.model');
+const mongoose = require("mongoose");
 
 // controllers to create user
 

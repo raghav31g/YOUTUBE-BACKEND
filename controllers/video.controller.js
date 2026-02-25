@@ -1,4 +1,4 @@
-const Video = require('../models/video.model');
+const Video = require('../models/Video.model');
 const VideoStats = require('../models/VideoStats');
 
 // controller to insert video and video stats
