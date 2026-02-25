@@ -1,4 +1,4 @@
-const channel = require('../models/channel.model');
+const channel = require('../models/Channel.model');
 const User = require('../models/User.model');
 const mongoose = require("mongoose");
 
