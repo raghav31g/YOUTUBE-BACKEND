@@ -23,7 +23,13 @@ const port = process.env.PORT || 4000;
 //     });
 
 app.use("/api",userRouter);
-app.use("/api",ChannelRouter);
+app.use("/api/channel",ChannelRouter);
+
+app.get("/", (req, res) => {
+    return res.status(200).json({
+        message: "Welcome to the youtube backend MRU!!!! University",
+    });
+});
 app.use("/api/video",videoRouter);
 
 app.listen(4000, () => {
