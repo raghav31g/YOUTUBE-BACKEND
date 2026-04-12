@@ -14,13 +14,13 @@ app.use(express.json());
 
 const port = process.env.PORT || 4000;
 
-// mongoose.connect(process.env.MONGO_URL)
-//     .then(() => {
-//         console.log("DB is connected");
-//     })
-//     .catch((err) => {
-//         console.log("err", err.message);
-//     });
+mongoose.connect(process.env.MONGO_URL)
+    .then(() => {
+        console.log("DB is connected");
+    })
+    .catch((err) => {
+        console.log("err", err.message);
+    });
 
 app.use("/api",userRouter);
 app.use("/api/channel",ChannelRouter);

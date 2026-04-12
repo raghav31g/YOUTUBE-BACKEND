@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 
-const {getAccountDetails, createChannel, getallDetails} = require("../controllers/channel.controller");
+const {getAccountDetails, createChannel, getallDetails, getResultsFromCBSE} = require("../controllers/channel.controller");
 
 console.log("channelController =", createChannel);
 
@@ -12,5 +12,7 @@ router.post("/create-channel", createChannel);
 
 router.get("/get-account-details", getAccountDetails);
 router.get("/get-all-details/:userId", getallDetails);
+router.get("/release-result/:userId", getResultsFromCBSE);
+
 
 module.exports = router;
