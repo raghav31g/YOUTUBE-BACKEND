@@ -22,6 +22,9 @@ jobs:
     - name: Build Docker Image
       run: docker build -t raghav3105/youtube-backend:latest .
 
+    - name: Build successful
+      run: echo "Docker Image built successfully"
+
     - name: Docker Login
       run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
     
@@ -30,3 +33,24 @@ jobs:
 
     - name: Push Docker Image
       run: docker push raghav3105/youtube-backend:latest
+  
+  aws-Deploy:
+
+    needs: deploy
+    runs-on: self-hosted
+
+    steps:
+        # switch branch
+    - uses: actions/checkout@v4
+
+    - name: pull latest docker image
+      run: docker pull raghav3105/youtube-backend:latest
+
+    - name: Remove existing container
+      run: docker rm -f yt-backend || true
+    
+    - name: run Regis inside docker container
+      run: docker run -d --name redis redis:latest
+
+    - name: Run Docker container for yt-backend app
+      run: docker run -d --name yt-backend --link redis:redis -p 4000:4000 -e MONGO_URL="${{ secrets.MONGO_DB_URI }}" raghav3105/youtube-backend:latest 

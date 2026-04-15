@@ -5,7 +5,7 @@ const Redis = require("ioredis");
 // basic setup 
 
 const redis = new Redis({
-    host:"127.0.0.1", // local host
+    host:"redis", // local host
     port:6379, // port where redis is running
 });
 
